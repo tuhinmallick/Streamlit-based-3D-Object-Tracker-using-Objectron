@@ -7,8 +7,7 @@ mp_objectron = mp.solutions.objectron
 
 @st.cache(persist=True,allow_output_mutation=True,show_spinner=False,suppress_st_warning=True)
 def object_tracking_image(uploaded_image, downloaded_image, model_name, num_objects):
-    IMAGE_FILES=[]
-    IMAGE_FILES.append(uploaded_image)
+    IMAGE_FILES = [uploaded_image]
     with mp_objectron.Objectron(static_image_mode=True,
                             max_num_objects=num_objects,
                             min_detection_confidence=0.5,

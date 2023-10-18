@@ -38,9 +38,13 @@ if model_name and num_objects and segmentation_type == "Image":
     if uploaded_file is not None:
         with open(os.path.join(upload_path,uploaded_file.name),"wb") as f:
             f.write((uploaded_file).getbuffer())
-        with st.spinner(f"Working... 💫"):
+        with st.spinner("Working... 💫"):
             uploaded_image = os.path.abspath(os.path.join(upload_path,uploaded_file.name))
-            downloaded_image = os.path.abspath(os.path.join(download_path,str("output_"+uploaded_file.name)))
+            downloaded_image = os.path.abspath(
+                os.path.join(
+                    download_path, str(f"output_{uploaded_file.name}")
+                )
+            )
             object_tracking_image(uploaded_image, downloaded_image, model_name, num_objects)
             print("Output Image: ", downloaded_image)
             final_image = Image.open(downloaded_image)
@@ -50,38 +54,38 @@ if model_name and num_objects and segmentation_type == "Image":
             with open(downloaded_image, "rb") as file:
                 if uploaded_file.name.endswith('.jpg') or uploaded_file.name.endswith('.JPG'):
                     if st.download_button(
-                                            label="Download Output Image 📷",
-                                            data=file,
-                                            file_name=str("output_"+uploaded_file.name),
-                                            mime='image/jpg'
-                                         ):
+                        label="Download Output Image 📷",
+                        data=file,
+                        file_name=str(f"output_{uploaded_file.name}"),
+                        mime='image/jpg',
+                    ):
                         download_success()
 
                 if uploaded_file.name.endswith('.jpeg') or uploaded_file.name.endswith('.JPEG'):
                     if st.download_button(
-                                            label="Download output Image 📷",
-                                            data=file,
-                                            file_name=str("output_"+uploaded_file.name),
-                                            mime='image/jpeg'
-                                         ):
+                        label="Download output Image 📷",
+                        data=file,
+                        file_name=str(f"output_{uploaded_file.name}"),
+                        mime='image/jpeg',
+                    ):
                         download_success()
 
                 if uploaded_file.name.endswith('.png') or uploaded_file.name.endswith('.PNG'):
                     if st.download_button(
-                                            label="Download output Image 📷",
-                                            data=file,
-                                            file_name=str("output_"+uploaded_file.name),
-                                            mime='image/png'
-                                         ):
+                        label="Download output Image 📷",
+                        data=file,
+                        file_name=str(f"output_{uploaded_file.name}"),
+                        mime='image/png',
+                    ):
                         download_success()
 
                 if uploaded_file.name.endswith('.bmp') or uploaded_file.name.endswith('.BMP'):
                     if st.download_button(
-                                            label="Download output Image 📷",
-                                            data=file,
-                                            file_name=str("output_"+uploaded_file.name),
-                                            mime='image/bmp'
-                                         ):
+                        label="Download output Image 📷",
+                        data=file,
+                        file_name=str(f"output_{uploaded_file.name}"),
+                        mime='image/bmp',
+                    ):
                         download_success()
     else:
         st.warning('⚠ Please upload your Image file 😯')
